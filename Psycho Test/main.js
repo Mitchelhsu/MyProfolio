@@ -18,7 +18,7 @@ $(function() {
                     if(isNaN(questions[currentQuiz].answers[i][1])){
                         var finalResult = questions[currentQuiz].answers[i][1];
 
-                        $("#questions").text(finalAnswers[finalResult][0]);
+                        $("#question").text(finalAnswers[finalResult][0]);
                         $("#options").empty();
                         $("#options").append(`${finalAnswers[finalResult][1]}<br><br>`);
                         currentQuiz = null;

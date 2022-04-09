@@ -13,6 +13,39 @@ table {
     border-collapse: collapse;
 }
 
+tr:nth-child(1) {
+    background-color: rgba(62, 62, 62, 0.867);
+    color: white;
+}
+
 tr:nth-child(even) {
     background-color: #dddd;
+}
+
+td.rowDel {
+    background-color: white;
+    width: 10px;
+    visibility: hidden;
+}
+
+div.buttons {
+    margin-top: 10px;
+}
+
+#btnEdit {
+    position: absolute;
+    left: 48%;
+    visibility: hidden;
+}
+
+#btnDone {
+    position: absolute;
+    left: 70%;
+    visibility: hidden;
+}
+
+#btnCancel {
+    position: absolute;
+    left: 64%;
+    visibility: hidden;
 }
