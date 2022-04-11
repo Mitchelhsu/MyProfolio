@@ -10,12 +10,19 @@
     </head>
     <body>
         <h1>Club Course Schedule</h1>
+
+        <div class="datePick">
+            <p id="info">Please choose the starting date of your schedule: 
+                <input type="date" name="startDate" id="datePicker">
+            </p>
+        </div>
+
         <table id="courseTable"></table>
 
         <div class="buttons">
             <button id="btnEdit">Edit</button>
-            <button id="btnDone">Done</button>
             <button id="btnCancel">Cancel</button>
+            <button id="btnDone">Done</button>
         </div>
         
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

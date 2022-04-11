@@ -11,6 +11,7 @@ table {
     margin: auto;
     font-size: 1.5em;
     border-collapse: collapse;
+    visibility: hidden;
 }
 
 tr:nth-child(1) {
@@ -39,13 +40,11 @@ div.buttons {
 }
 
 #btnDone {
-    position: absolute;
-    left: 70%;
+    position: realtive;
     visibility: hidden;
 }
 
 #btnCancel {
-    position: absolute;
-    left: 64%;
+    position: relative;
     visibility: hidden;
 }
