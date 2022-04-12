@@ -1552,6 +1552,14 @@ input, select, textarea {
 		.image.fit {
 			display: block;
 			width: 100%;
+			transition: transform 0.5s;
+			border: 3px solid rgb(210, 140, 140);
+			border-radius: 5px;
+		}
+
+		.image.fit:hover {
+			transform: scale(1.3);
+			/* filter: blur(3px); */
 		}
 
 		.image.featured {
