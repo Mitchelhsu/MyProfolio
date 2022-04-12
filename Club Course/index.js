@@ -1,22 +1,22 @@
-$(function() {
-    function loadTable() {
-        $('#courseTable').empty();
-        $("#courseTable").append("<tr><th>場次</th><th>時間</th><<th>主題</th>/tr>");
-    
-        var MSperDay = 24*60*60*1000;
-        for (var x = 0; x < topics.length; x++) {
-            $('#courseTable').append(`
-                <tr>
-                <td>${x+1}</td>
-                <td>${(new Date(startDate.getTime()+7*x*MSperDay)).toLocaleDateString(
-                    undefined, {month: "numeric", day: "numeric"})}
-                </td>
-                <td id="">${topics[x]}</td>
-                </tr>
-            `);
-        }
+function loadTable() {
+    $('#courseTable').empty();
+    $("#courseTable").append("<tr><th>場次</th><th>時間</th><<th>主題</th>/tr>");
+
+    var MSperDay = 24*60*60*1000;
+    for (var x = 0; x < topics.length; x++) {
+        $('#courseTable').append(`
+            <tr>
+            <td>${x+1}</td>
+            <td>${(new Date(startDate.getTime()+7*x*MSperDay)).toLocaleDateString(
+                undefined, {month: "numeric", day: "numeric"})}
+            </td>
+            <td id="">${topics[x]}</td>
+            </tr>
+        `);
     }
-    
+}
+
+$(function() {
     $('#datePicker').on('change', function() {
         startDate = new Date(this.value);
         if (!editing) {
@@ -24,7 +24,7 @@ $(function() {
             $('#courseTable').css('visibility', 'visible')
             $('#btnEdit').css('visibility', 'visible')
 
-            $('.datePick').html('<h3>This is your schedule.</h3>')
+            $('.datePick').html('<h3 id="info">This is your schedule.</h3>')
         }
     });
 
@@ -36,7 +36,7 @@ $(function() {
         $('#btnEdit').css('visibility', 'hidden')
 
         $('.datePick').html(
-            '<p id="info">Please choose the starting date of your schedule: <input type="date" name="startDate" id="datePicker"></p>'
+            '<p id="info">Please choose the starting date of your schedule: <input type="date" id="datePicker"></p>'
         );
 
         for(let i=2; i<=14; i+=3 ) {
@@ -47,6 +47,9 @@ $(function() {
     });
 
     $('#btnDone').on('click', function() {
+        if($('#datePicker').val() != '') {
+            startDate = new Date($('#datePicker').val());
+        }
         for (let i=0; i<topics.length;i++) {
             topics[i] = $('#courseTable td').eq(i*3+2).children().val();
         }

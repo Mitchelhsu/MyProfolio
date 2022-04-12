@@ -3,12 +3,10 @@ let currentPlay = 0;
 
 function onYouTubeIframeAPIReady() {
     player = new YT.Player('player', {
-        height: '390',
-        width: '640',
         videoId: playList[currentPlay],
         playerVars: {
             autoplay: 0,
-            controls: 0,
+            controls: 1,
             start: playTime[currentPlay][0],
             end: playTime[currentPlay][1],
             iv_load_policy: 3
@@ -21,8 +19,8 @@ function onYouTubeIframeAPIReady() {
 }
 
 function onPlayerReady(event) {
+    $('h2').text(player.getVideoData().title);
     $('#playButton').on('click', function() {
-        $('h2').text(player.getVideoData().title);
         player.playVideo();
     });
 }

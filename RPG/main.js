@@ -3,6 +3,31 @@ let imgMountain, imgMain, imgEnemy;
 
 const gridLength = 200;
 
+sources = {
+    Mountain: 'images/material.png',
+    Enemy: 'images/Enemy.png',
+    Main: 'images/spriteSheet.png'
+}
+
+function loadImages(sources, callback) {
+    var images = {};
+    var loadedImages = 0;
+    var numImages = 0;
+    // get num of sources
+    for(var src in sources) {
+        numImages++;
+    }
+    for(var src in sources) {
+        images[src] = new Image();
+        images[src].onload = function() {
+            if(++loadedImages >= numImages) {
+                callback(images);
+            }
+        };
+        images[src].src = sources[src];
+    }
+}
+
 $(function(){
     mapArray = [
         [0,1,1],
@@ -11,34 +36,25 @@ $(function(){
     ];
     ctx = $("#myCanvas")[0].getContext("2d");
     
-    imgMain = new Image();
-    imgMain.src = "images/spriteSheet.png";
+    // imgMain = new Image();
+    // imgMain.src = "images/spriteSheet.png";
     currentImgMain = {
         "x":0,
         "y":0
     };
 
-    imgMain.onload = function() {
-        ctx.drawImage(imgMain, 0,0,80,130,currentImgMain.x,currentImgMain.y,gridLength,gridLength);
-    }
-
-    imgMountain = new Image();
-    imgMountain.src = 'images/material.png'
-    imgEnemy = new Image();
-    imgEnemy.src = 'images/Enemy.png'
-    imgMountain.onload = function() {
-        imgEnemy.onload = function() {
-            for(var x in mapArray) {
-                for(var y in mapArray[x]) {
-                    if(mapArray[x][y] == 1) {
-                        ctx.drawImage(imgMountain, 32, 65, 32, 32, y*gridLength, x*gridLength, gridLength, gridLength)
-                    } else if(mapArray[x][y] == 3) {
-                        ctx.drawImage(imgEnemy, 7,40,104,135,y*gridLength,x*gridLength,gridLength,gridLength);
-                    }
+    loadImages(sources, function(images) {
+        ctx.drawImage(images.Main, 0,0,80,130,currentImgMain.x,currentImgMain.y,gridLength,gridLength);
+        for(var x in mapArray) {
+            for(var y in mapArray[x]) {
+                if(mapArray[x][y] == 1) {
+                    ctx.drawImage(images.Mountain, 32, 65, 32, 32, y*gridLength, x*gridLength, gridLength, gridLength)
+                } else if(mapArray[x][y] == 3) {
+                    ctx.drawImage(images.Enemy, 7,40,104,135,y*gridLength,x*gridLength,gridLength,gridLength);
                 }
             }
         }
-    }
+    });
 });
 
 $(document).on("keydown",function(event){
@@ -114,13 +130,15 @@ $(document).on("keydown",function(event){
         $('talkBox').text('邊界');
     }
 
-    ctx.drawImage(
-        imgMain,
-        cutImagePositionX,
-        0, 80, 130,
-        currentImgMain.x,
-        currentImgMain.y,
-        gridLength,
-        gridLength
-    );
+    loadImages(sources, function(images) {
+        ctx.drawImage(
+            images.Main,
+            cutImagePositionX,
+            0, 80, 130,
+            currentImgMain.x,
+            currentImgMain.y,
+            gridLength,
+            gridLength
+        );
+    });
 });
