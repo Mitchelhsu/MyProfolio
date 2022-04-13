@@ -23,6 +23,7 @@ $(function() {
             loadTable();
             $('#courseTable').css('visibility', 'visible')
             $('#btnEdit').css('visibility', 'visible')
+            $('.trigger_wrapper').css('visibility', 'visible')
 
             $('.datePick').html('<h3 id="info">This is your schedule.</h3>')
         }
