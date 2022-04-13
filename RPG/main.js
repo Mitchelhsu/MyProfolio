@@ -29,6 +29,16 @@ function loadImages(sources, callback) {
 }
 
 $(function(){
+    $(".trigger_popup_fricc").on('click', function(){
+        $('.hover_bkgr_fricc').show();
+     });
+     $('.hover_bkgr_fricc').on('click', function(){
+         $('.hover_bkgr_fricc').hide();
+     });
+     $('.popupCloseButton').on('click', function(){
+         $('.hover_bkgr_fricc').hide();
+     });
+     
     mapArray = [
         [0,1,1],
         [0,0,0],
