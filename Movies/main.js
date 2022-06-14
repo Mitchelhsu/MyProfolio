@@ -1,7 +1,7 @@
 const parseNA = string => (string === 'NA' ? undefined : string);
 const parseDate = string => d3.timeParse('%Y-%m-%d')(string);
 
-d3.csv('../database/movies.csv', type).then(
+d3.csv('movies.csv', type).then(
     res => {
         ready(res);
     }
